@@ -69,10 +69,12 @@ class BayesClassifier:
         # for index, filename in enumerate(files, 1): # type: ignore
         #     print(f"Training on file {index} of {len(files)}")
         #     <the rest of your code for updating frequencies here>
+        
         for index, filename in enumerate(files, 1): # type: ignore
-            #print(f"Training on file {index} of {len(files)}")
+            print(f"Training on file {index} of {len(files)}")
             
-            text = self.load_file(os.path.join(self.training_data_directory, filename))        
+            text = self.load_file(os.path.join(self.training_data_directory, filename)) 
+            print(text)       
 
         # we want to fill pos_freqs and neg_freqs with the correct counts of words from
         # their respective reviews
@@ -84,6 +86,9 @@ class BayesClassifier:
         # positive frequency dictionary. If it is neither a postive or negative file,
         # ignore it and move to the next file (this is more just to be safe; we won't
         # test your code with neutral reviews)
+            
+            print(f"positive? {filename.startswith(self.pos_file_prefix)}")
+            print(f"negative? {filename.startswith(self.neg_file_prefix)}")
             tokens = self.tokenize(text)
 
             if filename.startswith(self.pos_file_prefix):
