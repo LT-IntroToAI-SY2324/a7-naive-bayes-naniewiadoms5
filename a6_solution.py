@@ -25,7 +25,7 @@ class BayesClassifier:
         self.neg_freqs: Dict[str, int] = {}
         self.pos_filename: str = "pos.dat"
         self.neg_filename: str = "neg.dat"
-        self.training_data_directory: str = "movie_reviews/"
+        self.training_data_directory: str = "movie_reviews/movie_reviews"
         self.neg_file_prefix: str = "movies-1"
         self.pos_file_prefix: str = "movies-5"
 
@@ -166,11 +166,14 @@ class BayesClassifier:
                 num_neg_appearances += self.neg_freqs[word]
 
             neg_prob += math.log(num_neg_appearances / num_neg_words)
+            
 
 
         # for debugging purposes, it may help to print the overall positive and negative
         # probabilities
         
+        print(f"Positive Probability: {pos_prob}")
+        print(f"Negative Probability: {neg_prob}")
 
         # determine whether positive or negative was more probable (i.e. which one was
         # larger)
@@ -317,4 +320,22 @@ if __name__ == "__main__":
     print("\nThe following should all be negative.")
     print(b.classify('rainy days are the worst'))
     print(b.classify('computer science is terrible'))
+    print(b.classify("I'm so excited for the solar eclipse! It's going to be so cool!"))
+    print(b.classify('I like the new iPhone 15'))
+    print(b.classify('I am excited for this summer'))
+    print(b.classify('I am very excited to travel to California'))
+
+    print("NEGATIVE -----------------------------------------------------")
+
+    print(b.classify("The solar eclipse is going to be boring, why should we waste our time?"))
+    print(b.classify("The new iPhone 15 has minimal changes. It’s not good"))
+    print(b.classify('It is going to be bad weather, raining on our trip'))
+    print(b.classify('California will be a long and boring ride from Chicago'))
+
+    print(" SEPARATE REVIEWS  ---------------------------------------------")
+    print(b.classify("We’ve had zero issues with heating"))
+    print(b.classify("Battery life is terrific"))
+    print(b.classify('It feels like a downgraded tremendously'))
+    print(b.classify('Still overheats while charging'))
     
+    print("\nThe following is to test out the method with each groups responses")
